@@ -1,0 +1,186 @@
+/* Collection showcase: /collection
+   One form at a time. Same paper/ink system as the site; hairline frames. */
+
+.show-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: end;
+  padding-block: clamp(2rem, 5vh, 3.25rem) 1.25rem;
+  border-bottom: 1px solid var(--hair);
+}
+
+.show-head h1 {
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  margin: 0 0 .65rem;
+  font-weight: 500;
+}
+
+.coll-meta {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .74rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+/* the form itself */
+.show {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  padding-block: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.show-frame {
+  position: relative;
+  background:
+    radial-gradient(120% 120% at 50% 32%, #fbfbfc 0%, #f3f3f5 58%, #ececef 100%);
+  border: 1px solid var(--hair);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  min-height: 420px;
+}
+
+.show-frame img {
+  width: min(100%, 420px);
+  height: auto;
+  image-rendering: pixelated;
+}
+
+/* full-body view: ground the sprite with a soft shadow so it doesn't float */
+.show.is-expanded .show-frame img {
+  filter: drop-shadow(0 16px 18px rgba(11, 11, 12, .22));
+}
+
+.show-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-width: 0;
+}
+
+.show-id {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.show-id h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 2.5rem);
+  letter-spacing: -.04em;
+  font-weight: 500;
+}
+
+.palette-tag {
+  --pal: #111;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+  border: 1px solid var(--hair-strong);
+  padding: .34rem .6rem;
+}
+
+.palette-tag::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--pal);
+}
+
+.traits { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem 1.1rem; }
+
+.traits div { border-top: 1px solid var(--hair); padding-top: .45rem; }
+
+.traits dt {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .6rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.traits dd { margin: .18rem 0 0; font-size: .86rem; line-height: 1.3; }
+
+.show-actions {
+  display: flex;
+  gap: .6rem;
+  margin-top: .4rem;
+}
+
+.show-actions .btn { flex: 1; }
+
+.view-toggle {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .66rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .5rem .8rem;
+  border: 1px solid var(--hair-strong);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease);
+}
+
+.view-toggle:hover { border-color: var(--ink); }
+.view-toggle[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+/* palette switch row */
+.show-tools { padding-block: 1.1rem 2.5rem; }
+
+.coll-tools {
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--hair);
+}
+
+.mono-label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .66rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+  margin-right: .25rem;
+}
+
+.chip {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: .7rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: .42rem .7rem;
+  border: 1px solid var(--hair-strong);
+  background: transparent;
+  cursor: pointer;
+  transition: background .18s var(--ease), color .18s var(--ease), border-color .18s var(--ease);
+}
+
+.chip:hover { border-color: var(--ink); }
+.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+@media (max-width: 860px) {
+  .show { grid-template-columns: 1fr; }
+  .show-frame { min-height: 0; }
+  .show-head { grid-template-columns: 1fr; gap: .75rem; }
+}

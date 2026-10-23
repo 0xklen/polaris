@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#1c35ff"/>
+
+  <!-- Polaris tile -->
+  <rect x="454" y="34" width="116" height="116" rx="24" fill="#f4f4f6"/>
+  <image href="logo-ink.png" x="466" y="46" width="92" height="92"/>
+
+  <!-- Pons tile -->
+  <rect x="630" y="34" width="116" height="116" rx="24" fill="#f4f4f6"/>
+  <image href="pons-logo.png" x="642" y="46" width="92" height="92"/>
+
+  <!-- separator -->
+  <text x="600" y="112" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="46" font-weight="300" fill="#45454b">&#215;</text>
+
+  <text x="600" y="330" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-0.01em" fill="#0b0b0c">NOW <tspan fill="#1c35ff">LIVE</tspan> ON PONS</text>
+
+  <text x="600" y="386" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="26" fill="#6c6c73">Polaris &#215; Pons — computer-generated characters on Ethereum, drawn by the contract.</text>
+
+  <text x="600" y="566" text-anchor="middle" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="22" letter-spacing="0.16em" fill="#45454b">polarisforms.xyz</text>
+</svg>

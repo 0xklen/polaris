@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D printer — Polaris</title>
+<meta name="description" content="Print any Polaris form — or your own photo — as a 3D-printable medallion. Watch the printer build it, download the STL, print it at home.">
+<link rel="canonical" href="https://polarisforms.xyz/printer">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .p-hero { padding: 3.5rem 0 1rem; }
+  .p-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: start; padding: 1rem 0 2.5rem; }
+  .p-frame { position: relative; border-radius: 18px; padding: 2px; background: linear-gradient(135deg, #1c35ff, #7a5cff 60%, #1c35ff); box-shadow: 0 0 0 1px #e6e6e9, 0 18px 50px -20px rgba(28,53,255,.45); }
+  .p-frame .live { position: absolute; top: 12px; left: 12px; z-index: 5; display: inline-flex; align-items: center; gap: 6px; font: 700 11px/1 ui-monospace,Menlo,monospace; letter-spacing: .12em; color: #fff; background: rgba(11,11,12,.82); border-radius: 999px; padding: 6px 10px; }
+  .p-frame .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #43c25c; box-shadow: 0 0 0 0 rgba(67,194,92,.7); animation: pPulse 1.6s infinite; }
+  @keyframes pPulse { 0%{box-shadow:0 0 0 0 rgba(67,194,92,.7)} 70%{box-shadow:0 0 0 7px rgba(67,194,92,0)} 100%{box-shadow:0 0 0 0 rgba(67,194,92,0)} }
+  .p-frame iframe { display: block; width: 100%; aspect-ratio: 4/3.1; border: 0; border-radius: 16px; background: #fff; }
+  .p-col { display: flex; flex-direction: column; gap: 1.5rem; }
+  .p-box { border: 1px solid var(--hair); border-radius: 16px; padding: 1.1rem; }
+  .p-box h2 { font-size: 1rem; letter-spacing: .02em; margin: 0 0 .8rem; }
+  .p-box .sub { font-size: .82rem; color: var(--ink-50); margin: -.5rem 0 .8rem; line-height: 1.4; }
+  .pick { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+  .pick button { all: unset; cursor: pointer; border: 2px solid var(--hair); border-radius: 12px; overflow: hidden; transition: border-color .15s var(--ease), transform .12s var(--ease); background: #fff; }
+  .pick button img { display: block; width: 100%; height: auto; }
+  .pick button.on { border-color: var(--ink); }
+  .pick button:active { transform: translateY(1px); }
+  .rowbtn { display: flex; gap: .6rem; margin-top: .7rem; }
+  .rowbtn .btn { flex: 1; justify-content: center; height: 40px; font-size: .86rem; }
+  .sel { display: flex; align-items: center; gap: .8rem; }
+  .sel img { width: 52px; height: 52px; border-radius: 10px; border: 1px solid var(--hair); }
+  .sel .t { font-size: .9rem; color: var(--ink-70); }
+  .sel .t b { color: var(--ink); }
+  .drop { display: none; }
+  .drop.on { display: flex; flex-direction: column; gap: .6rem; margin-top: .8rem; }
+  .drop.drag { border-color: var(--accent); background: #f6f7ff; }
+  .drop input[type=file] { font-size: .85rem; }
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; }
+  .gallery .g { border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; }
+  .gallery .g img { display: block; width: 100%; }
+  .gallery .g .c { padding: .4rem .5rem; font-size: .78rem; color: var(--ink-70); display: flex; justify-content: space-between; align-items: center; }
+  .gallery .g .c b { color: var(--ink); }
+  .gallery .g .c .ok { color: #1c8f3a; font-weight: 700; }
+  @media (max-width: 860px) {
+    .p-grid { grid-template-columns: 1fr; }
+    .pick { grid-template-columns: repeat(4, 1fr); }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Polaris home">
+      <img src="assets/logo-ink.png" alt="" width="21" height="21">
+      Polaris
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/collection">The forms</a>
+      <a href="/printer" aria-current="page">Printer</a>
+    </nav>
+    <a class="btn" href="https://x.com/polarisforms" target="_blank" rel="noopener">Follow on X</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap p-hero">
+    <h1 class="display">Print your form.</h1>
+    <p class="lede">Pick any Polaris form — or drop in your own photo — and the printer builds it into a 3D-printable medallion. Download the STL and print it on your own machine.</p>
+  </section>
+
+  <section class="wrap p-grid">
+    <div class="p-frame">
+      <span class="live">LIVE · PRINTER</span>
+      <iframe id="fig" src="/printer-fig?nft=0001" title="The Polaris 3D printer" loading="lazy"></iframe>
+    </div>
+
+    <div class="p-col">
+      <div class="p-box">
+        <h2>Choose a form</h2>
+        <div class="sub">4,000 computer-generated forms. Pick one, or reroll for more.</div>
+        <div class="pick" id="pick"></div>
+        <div class="rowbtn">
+          <button class="btn btn-ghost" id="reroll">Reroll</button>
+        </div>
+        <div class="sel" id="sel" style="margin-top:.8rem">
+          <img id="selimg" src="/nft/png/0001.png" alt="">
+          <div class="t">Printing <b id="selid">form #0001</b><br><span id="selnote">50 mm medallion · 2 mm base + relief</span></div>
+        </div>
+        <div class="rowbtn">
+          <button class="btn" id="dlstl">Download STL</button>
+        </div>
+      </div>
+
+      <div class="p-box">
+        <h2>Print your own photo</h2>
+        <div class="sub">Any image becomes a relief medallion — a portrait, a logo, anything.</div>
+        <button class="btn btn-ghost" id="uploadbtn" style="width:100%;justify-content:center">Upload a photo</button>
+        <div class="drop" id="drop">
+          <input type="file" id="file" accept="image/*">
+          <button class="btn" id="photostl" style="width:100%;justify-content:center">Generate STL from photo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:4rem">
+    <div class="p-box">
+      <h2>Already printed</h2>
+      <div class="sub">The finished medallions. Your print lands here next.</div>
+      <div class="gallery" id="gallery"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-top">
+    <div>
+      <p class="foot-brand">Polaris</p>
+      <p class="foot-line">Computer-generated characters on Ethereum. Every form is drawn by the contract itself.</p>
+    </div>
+    <ul class="foot-links">
+      <li><a href="/collection">The forms</a></li>
+      <li><a href="/printer">Printer</a></li>
+      <li><a href="/terms">Terms</a></li>
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="/cookies">Cookies</a></li>
+      <li><a href="/credits">Credits</a></li>
+    </ul>
+  </div>
+  <div class="wrap foot-bottom">
+    <a class="link" href="https://x.com/polarisforms" target="_blank" rel="noopener">@polarisforms</a>
+  </div>
+</footer>
+
+<script>
+/* ---- client-side STL generator: any image -> 3D-printable medallion (binary STL) ---- */
+function buildSTL(img, outName, done){
+  const N = 48, PLATE = 50, BASE = 2, RMIN = 1.5, RMAX = 3.0;
+  const c = document.createElement('canvas'); c.width = c.height = N;
+  const ctx = c.getContext('2d', { willReadFrequently: true });
+  ctx.drawImage(img, 0, 0, N, N);
+  const d = ctx.getImageData(0, 0, N, N).data;
+  const h = new Float32Array(N * N);
+  for (let j = 0; j < N; j++) for (let i = 0; i < N; i++){
+    const o = (j * N + i) * 4, a = d[o + 3], g = (d[o] + d[o + 1] + d[o + 2]) / 3;
+    h[j * N + i] = a < 128 ? BASE : BASE + RMIN + (g / 255) * RMAX;
+  }
+  const cell = PLATE / N, S = N + 1, OFF = S * S;
+  const verts = new Float32Array(OFF * 2 * 3);
+  const hAt = (i, j) => h[Math.min(Math.max(j,0),N-1) * N + Math.min(Math.max(i,0),N-1)];
+  for (let j = 0; j < S; j++) for (let i = 0; i < S; i++){
+    const z = (hAt(i-1,j-1) + hAt(i,j-1) + hAt(i-1,j) + hAt(i,j)) / 4;
+    verts[(j*S+i)*3] = i*cell; verts[(j*S+i)*3+1] = z; verts[(j*S+i)*3+2] = j*cell;
+    verts[(OFF + j*S+i)*3] = i*cell; verts[(OFF + j*S+i)*3+1] = 0; verts[(OFF + j*S+i)*3+2] = j*cell;
+  }
+  const tris = [];
+  for (let j = 0; j < N; j++) for (let i = 0; i < N; i++){
+    const a = j*S+i, b = j*S+i+1, c = (j+1)*S+i, d = (j+1)*S+i+1;
+    tris.push(a,c,b, b,c,d);               // top
+    tris.push(OFF+a, OFF+b, OFF+c, OFF+b, OFF+d, OFF+c); // bottom
+  }
+  for (let i = 0; i < N; i++){ tris.push(i, OFF+i, i+1, i+1, OFF+i, OFF+i+1); }
+  for (let i = 0; i < N; i++){ const a=N*S+i, b=N*S+i+1; tris.push(a,b,OFF+a, b,OFF+b,OFF+a); }
+  for (let j = 0; j < N; j++){ const a=j*S, b=(j+1)*S; tris.push(a,b,OFF+a, b,OFF+b,OFF+a); }
+  for (let j = 0; j < N; j++){ const a=j*S+N, b=(j+1)*S+N; tris.push(a,OFF+a,b, b,OFF+a,OFF+b); }
+
+  const nt = tris.length / 3;
+  const buf = new ArrayBuffer(84 + nt * 50);
+  const dv = new DataView(buf);
+  const hdr = 'POLARIS FORM relief - 3D printable medallion';
+  for (let k = 0; k < 80; k++) dv.setUint8(k, k < hdr.length ? hdr.charCodeAt(k) : 0);
+  dv.setUint32(80, nt, true);
+  let o = 84;
+  for (let t = 0; t < nt; t++){
+    const A = tris[t*3], B = tris[t*3+1], C = tris[t*3+2];
+    const ax=verts[A*3], ay=verts[A*3+1], az=verts[A*3+2];
+    const ux=verts[B*3]-ax, uy=verts[B*3+1]-ay, uz=verts[B*3+2]-az;
+    const vx=verts[C*3]-ax, vy=verts[C*3+1]-ay, vz=verts[C*3+2]-az;
+    let nx=uy*vz-uz*vy, ny=uz*vx-ux*vz, nz=ux*vy-uy*vx;
+    const L=Math.sqrt(nx*nx+ny*ny+nz*nz)||1; nx/=L; ny/=L; nz/=L;
+    dv.setFloat32(o, nx, true); dv.setFloat32(o+4, ny, true); dv.setFloat32(o+8, nz, true); o += 12;
+    for (const v of [A,B,C]){ dv.setFloat32(o, verts[v*3], true); dv.setFloat32(o+4, verts[v*3+1], true); dv.setFloat32(o+8, verts[v*3+2], true); o += 12; }
+    dv.setUint16(o, 0, true); o += 2;
+  }
+  const blob = new Blob([buf], { type: 'application/octet-stream' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = outName; a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 5000);
+  if (done) done();
+}
+
+function loadImage(src, cb){
+  const im = new Image();
+  im.crossOrigin = 'anonymous';
+  im.onload = () => cb(im);
+  im.onerror = () => cb(null);
+  im.src = src;
+}
+
+/* ---- NFT picker ---- */
+let current = '0001';
+function randForms(n){
+  const out = [];
+  while (out.length < n){ const id = String(1 + Math.floor(Math.random()*4000)).padStart(4,'0'); if (!out.includes(id)) out.push(id); }
+  return out;
+}
+function renderPicker(){
+  const ids = randForms(6);
+  const pick = document.getElementById('pick');
+  pick.innerHTML = ids.map(id => `<button data-id="${id}"><img src="/nft/png/${id}.png" alt="Form ${id}" loading="lazy"></button>`).join('');
+}
+function select(id){
+  current = id;
+  document.querySelectorAll('#pick button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  document.getElementById('selimg').src = '/nft/png/' + id + '.png';
+  document.getElementById('selid').textContent = 'form #' + id;
+  document.getElementById('fig').src = '/printer-fig?nft=' + id;
+}
+document.getElementById('pick').addEventListener('click', e => {
+  const b = e.target.closest('button[data-id]'); if (!b) return; select(b.dataset.id);
+});
+document.getElementById('reroll').addEventListener('click', renderPicker);
+
+/* ---- download STL for the selected form ---- */
+document.getElementById('dlstl').addEventListener('click', () => {
+  loadImage('/nft/png/' + current + '.png', im => {
+    if (!im) return alert('Could not load the form image.');
+    buildSTL(im, 'polaris-' + current + '.stl');
+  });
+});
+
+/* ---- photo upload -> STL ---- */
+const drop = document.getElementById('drop'), file = document.getElementById('file');
+document.getElementById('uploadbtn').addEventListener('click', () => { drop.classList.toggle('on'); if (drop.classList.contains('on')) file.click(); });
+document.getElementById('photostl').addEventListener('click', () => {
+  if (!file.files.length) return alert('Choose a photo first.');
+  const reader = new FileReader();
+  reader.onload = e => {
+    const im = new Image();
+    im.onload = () => buildSTL(im, 'polaris-photo.stl');
+    im.src = e.target.result;
+  };
+  reader.readAsDataURL(file.files[0]);
+});
+
+/* ---- already-printed gallery ---- */
+const PRINTED = ['0001','0008','0016','0025'];
+document.getElementById('gallery').innerHTML = PRINTED.map(id =>
+  `<div class="g"><img src="/nft/png/${id}.png" alt="Form ${id}" loading="lazy"><div class="c"><span>#${id}</span><span class="ok">PRINTED ✓</span></div></div>`
+).join('');
+
+renderPicker();
+</script>
+</body>
+</html>

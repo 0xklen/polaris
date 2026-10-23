@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The forms - Polaris</title>
+<meta name="description" content="The Polaris forms: animated pixel characters built from layered traits. Body, hair, clothes, hat, shoes and palette, each token a unique combination.">
+<link rel="canonical" href="https://polarisforms.xyz/collection">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Polaris">
+<meta property="og:title" content="The forms - Polaris">
+<meta property="og:description" content="Animated pixel characters, one unique trait combination per token.">
+<meta property="og:url" content="https://polarisforms.xyz/collection">
+<meta property="og:image" content="https://polarisforms.xyz/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@polarisforms">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/collection.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="/" aria-label="Polaris home">
+      <img src="assets/logo-ink.png" alt="" width="21" height="21">
+      Polaris
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/collection" aria-current="page">The forms</a>
+      <a href="/printer">Printer</a>
+    </nav>
+    <a class="btn" href="https://x.com/polarisforms" target="_blank" rel="noopener">Follow on X</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap show-head">
+    <div>
+      <h1>The forms</h1>
+      <p class="lede" style="max-width:52ch;margin:0">One form at a time. Every form is a layered character: a body, hair, clothes, shoes, often a hat, and one palette holding it together. Reroll to draw another from the collection.</p>
+    </div>
+    <div class="coll-meta">
+      <span id="count">4,000 forms</span>
+      <span>animated</span>
+    </div>
+  </section>
+
+  <section class="wrap show">
+    <div class="show-frame">
+      <img id="stage" alt="" width="512" height="512">
+      <button class="view-toggle" id="viewtoggle" type="button" aria-pressed="false">Full view</button>
+    </div>
+    <div class="show-side">
+      <div class="show-id">
+        <h2 id="title">#1</h2>
+        <span class="palette-tag" id="palette-tag">ink</span>
+      </div>
+      <dl class="traits" id="traits"></dl>
+      <div class="show-actions">
+        <button class="btn btn-ghost" id="prev" type="button">Prev</button>
+        <button class="btn" id="reroll" type="button">Reroll</button>
+        <button class="btn btn-ghost" id="next" type="button">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap show-tools">
+    <div class="coll-tools">
+      <span class="mono-label">Collection</span>
+      <button class="chip" data-palette="all" aria-pressed="true">All</button>
+      <button class="chip" data-palette="ink" aria-pressed="false">Ink</button>
+      <button class="chip" data-palette="warm" aria-pressed="false">Warm</button>
+      <button class="chip" data-palette="cold" aria-pressed="false">Cold</button>
+      <button class="chip" data-palette="green" aria-pressed="false">Green</button>
+      <button class="chip" data-palette="violet" aria-pressed="false">Violet</button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>&copy; 2026 Polaris. All rights reserved.</span>
+      <a class="link" href="/">Back to home</a>
+      <a class="link" href="https://x.com/polarisforms" target="_blank" rel="noopener">@polarisforms</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/collection.js" defer></script>
+</body>
+</html>
